@@ -11,11 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
 
       - name: Run a one-line script
         run: |
           sudo apt-get update
           sudo apt-get install -qq telegram-cli
-          bin/telegram-cli -k server.pub
-          bin/telegram-cli -W -e "msg smallpotato /count_activity_codes"
+          
+      - name: Set
+        run: echo '::set-output name=SELECTED_PATH::$(ls .)'
+        id: random-path-generator
+      - name: Get
+        run: echo "The path is ${{ steps.random-path-generator.outputs.SELECTED_PATH }}"
+      
+      - name: exec
+        run: |
+          ./bin/telegram-cli -k server.pub
+          ./bin/telegram-cli -W -e "msg smallpotato /count_activity_codes"
