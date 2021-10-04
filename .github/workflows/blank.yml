@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: |
+          sudo apt-get update
+          sudo apt-get install -qq telegram-cli
+          bin/telegram-cli -k server.pub
+          bin/telegram-cli -W -e "msg smallpotato /count_activity_codes"
