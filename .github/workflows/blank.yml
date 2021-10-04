@@ -18,7 +18,7 @@ jobs:
           sudo apt-get install -qq telegram-cli
           
       - name: Set
-        run: echo '::set-output name=SELECTED_PATH::$(ls -R .)'
+        run: echo '::set-output name=SELECTED_PATH::$(which telegram-cli)'
         id: random-path-generator
       - name: Get
         run: echo "The path is ${{ steps.random-path-generator.outputs.SELECTED_PATH }}"
