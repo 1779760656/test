@@ -25,5 +25,5 @@ jobs:
       
       - name: exec
         run: |
-          ./bin/telegram-cli -k server.pub
-          ./bin/telegram-cli -W -e "msg smallpotato /count_activity_codes"
+          /usr/bin/telegram-cli -k server.pub
+          /usr/bin/telegram-cli -W -e "msg smallpotato /count_activity_codes"
